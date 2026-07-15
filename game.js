@@ -103,8 +103,12 @@
       this.syncHUD('Ready');
     }
 
-    startNewGame() {
+    startNewGame(initialDirection = null) {
       this.resetBoard();
+      if (initialDirection) {
+        this.pendingDirection = initialDirection;
+        this.direction = initialDirection;
+      }
       this.running = true;
       this.syncHUD('Running');
       this.startLoop();
@@ -214,11 +218,12 @@
         return;
       }
 
-      this.pendingDirection = next;
-
       if (!this.running && !this.gameOver) {
-        this.startNewGame();
+        this.startNewGame(next);
+        return;
       }
+
+      this.pendingDirection = next;
     }
 
     isOpposite(a, b) {
