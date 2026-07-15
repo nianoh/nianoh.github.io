@@ -7,3 +7,9 @@ if (navToggle && navList) {
     navToggle.setAttribute('aria-expanded', String(isOpen));
   });
 }
+
+window.addEventListener('DOMContentLoaded', () => {
+  if (typeof window.initSnakeGame === 'function') {
+    window.initSnakeGame();
+  }
+});
