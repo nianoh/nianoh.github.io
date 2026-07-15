@@ -39,6 +39,7 @@
   class SnakeGame {
     constructor(root) {
       this.root = root;
+      this.root.tabIndex = 0;
       this.canvas = root.querySelector('#snake-canvas');
       this.ctx = this.canvas.getContext('2d');
       this.scoreEl = root.querySelector('#score');
@@ -73,7 +74,10 @@
       this.pauseBtn?.addEventListener('click', () => this.togglePause());
       this.restartBtn?.addEventListener('click', () => this.restartGame());
 
-      window.addEventListener('keydown', (event) => this.handleKeydown(event));
+      this.root.addEventListener('pointerdown', () => {
+        this.root.focus({ preventScroll: true });
+      });
+      this.root.addEventListener('keydown', (event) => this.handleKeydown(event));
       window.addEventListener('resize', () => this.resize());
 
       for (const button of this.touchButtons) {

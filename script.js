@@ -12,4 +12,7 @@ window.addEventListener('DOMContentLoaded', () => {
   if (typeof window.initSnakeGame === 'function') {
     window.initSnakeGame();
   }
+  if (typeof window.initTetrisGame === 'function') {
+    window.initTetrisGame();
+  }
 });
